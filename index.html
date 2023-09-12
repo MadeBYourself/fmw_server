@@ -6,16 +6,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Ubicación en tiempo real</h1>
-    <p>Latitude: <span id="latitude"></span></p>
-    <p>Longitude: <span id="longitude"></span></p>
-    <p>Time Stamp: <span id="time_stamp"></span></p>
+
+    <div id="title">
+        <img id="logo" src="Resources/fmw_logo.png" alt="logotipe">
+    </div>
+
+    <div id="b"><div id="bar"></div></div>
+    <h1> Real time location</h1>
+    <div id="b"><div id="bar"></div></div>
+
+    <div id="data">
+        <ul id="lat">
+            <li><h2>Latitude</h2></li>
+            <li><div id="b"><div id="bar"></div></div></li>
+            <li><span id="latitude"></span></li>
+        </ul>
+        <ul id="lon">
+            <li><h2>Longitude</h2></li>
+            <li><div id="b"><div id="bar"></div></div></li>
+            <li><span id="longitude"></span></li>
+            </ul>
+        <ul id="Tim">
+            <li><h2>Time</h2></li>
+            <li><div id="b"><div id="bar"></div></div></li>
+            <li><span id="time_stamp"></span></li>
+        </ul>
+    </div>
+    
     <p id="error_message" style="color: red;"></p> <!-- Elemento para mostrar errores -->
 
     <!-- Agregar un contenedor para el mapa -->
-    <div id="map" style="width: 100%; height: 500px;"></div>
+    <div id="map"></div>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
