@@ -1,6 +1,17 @@
 import socket
 import threading
 import mysql.connector
+from configparser import ConfigParser
+
+def get_database_config():
+    config = ConfigParser()
+    config.read('config.ini')
+    return {
+        'host': config['database']['host'],
+        'user': config['database']['user'],
+        'password': config['database']['password'],
+        'database': config['database']['database'],
+    }
 
 def udp_server(port):
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -11,14 +22,10 @@ def udp_server(port):
         data, addr = s.recvfrom(65535)  # Tamaño máximo UDP
         print(f" {addr}: {data.decode('utf-8')}")
 
-        try:
-            connection = mysql.connector.connect(
-                host="fmwbase.c49tf0faxvcu.us-east-2.rds.amazonaws.com",
-                user="admin",
-                password="m12345678",
-                database="fmwdb"
-            )
+        db_config = get_database_config()
 
+        try:
+            connection = mysql.connector.connect(**db_config)
             cursor = connection.cursor()
 
             data_to_insert = data.decode("utf-8")
@@ -29,7 +36,6 @@ def udp_server(port):
 
             connection.commit()
             print("Data in database.")
-
 
         finally:
             if 'cursor' in locals() or 'cursor' in globals():
@@ -42,3 +48,4 @@ if __name__ == "__main__":
     udp_thread = threading.Thread(target=udp_server, args=(port,))
     udp_thread.start()
     udp_thread.join()
+
