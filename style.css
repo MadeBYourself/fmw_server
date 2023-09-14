@@ -41,7 +41,9 @@
 #data{
     display: flex;
 }
-
+#const{
+    display: flex;
+}
 
 /*? Bar */
 #b{display: flex;}
