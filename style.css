@@ -10,7 +10,7 @@
 }#error{
     display: flex;
 }button{
-    background-color: red;
+    background-color: green;
     color: white;
     border: none;
     font-size: 16px;
