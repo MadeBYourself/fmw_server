@@ -3,11 +3,36 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-#map {
-    width: 100%;
-    height: 500px;
+/*? Reset Botton */
+#reset{
+    display: flex;
+    margin:  10px 0 0 0;
+}#error{
+    display: flex;
+}button{
+    background-color: black;
+    color: white;
+    border: none;
+    font-size: 16px;
+    border-radius: 8px;
+    padding: 8px 15px;
+    text-decoration: none;
+    font-weight: 650;
 }
 
+/*? Map control */
+#cartography{
+    display: flex;
+}
+#map {
+    display: flex;
+    justify-self: center;
+    width: 90%;
+    height: 540px;
+    border-radius: 20px;
+}
+
+/*? Title (Find My Wheels) */
 #title {
     display: flex;
 }#logo{
@@ -17,22 +42,18 @@
     display: flex;
 }
 
-#b{
-    display: flex;
-}#bar{
+/*? Bar */
+#b{display: flex;}
+#bar{
     width: 50%;
     height: 3px;
     border-radius: 5px;
-    background-color: black;
-}
-h1{
-    display: flex;
-    margin: 5px 0 5px 0;
-}h2{
+    background-color: black;}
+
+/*? Text */
+h2{
     margin: 15px 0 5px 0
-}
-ul{
+}ul{
     display: block;
-    margin: 0px 85px 0px 0px;
-    list-style: none;
-}
+    margin: 0px 70px 0px 0px;
+    list-style: none;}

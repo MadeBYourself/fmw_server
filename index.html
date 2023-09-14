@@ -9,40 +9,54 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+    
     <div id="title">
         <img id="logo" src="Resources/fmw_logo.png" alt="logotipe">
     </div>
 
     <div id="b"><div id="bar"></div></div>
-    <h1> Real time location</h1>
-
-    <div id="data">
-        <ul id="lat">
-            <li><h2>Latitude</h2></li>
-            <li><div id="b"><div id="bar"></div></div></li>
-            <li><span id="latitude"></span></li>
-        </ul>
-        <ul id="lon">
-            <li><h2>Longitude</h2></li>
-            <li><div id="b"><div id="bar"></div></div></li>
-            <li><span id="longitude"></span></li>
-            </ul>
-        <ul id="Tim">
-            <li><h2>Time</h2></li>
-            <li><div id="b"><div id="bar"></div></div></li>
-            <li><span id="time_stamp"></span></li>
-        </ul>
+    <div id="Buttons">
+        <div id="RealLocation"></div>
     </div>
+    
+    <div id="RTL">
+        <div id="data">
+            <ul id="lat">
+                <li><h2>Latitude</h2></li>
+                <li><div id="b"><div id="bar"></div></div></li>
+                <li><span id="latitude"></span></li>
+            </ul>
+            <ul id="lon">
+                <li><h2>Longitude</h2></li>
+                <li><div id="b"><div id="bar"></div></div></li>
+                <li><span id="longitude"></span></li>
+                </ul>
+            <ul id="Tim">
+                <li><h2>Time</h2></li>
+                <li><div id="b"><div id="bar"></div></div></li>
+                <li><span id="time_stamp"></span></li>
+            </ul>
+        </div>
 
-    <p id="error_message" style="color: red;"></p> <!-- Elemento para mostrar errores -->
-
-    <!-- Agregar un contenedor para el mapa -->
-    <div id="map"></div>
+        <div id="reset">
+            <button onclick="reiniciarYCrearPolilinea()">Restart Track</button>
+        </div>
+        <div id="error"> 
+            <p id="error_message" style="color: red;"></p> <!-- Elemento para mostrar errores --> 
+        </div>
+        <!-- Agregar un contenedor para el mapa -->
+        <div id="cartography">
+            <div id="map"></div>
+        </div>
+    </div>
+    
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
         var map = L.map('map').setView([0, 0], 13); // Inicializa el mapa centrado en coordenadas [0, 0] y con zoom 13
+        var polyline = L.polyline([]).addTo(map); // Inicializa la polilínea vacía
+        var coordinates = []; // Matriz para almacenar las coordenadas del recorrido
+
 
         // Agrega una capa de mapa base de OpenStreetMap
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -60,15 +74,32 @@
                         // Mostrar los últimos datos
                         $('#latitude').text(data.latitude);
                         $('#longitude').text(data.longitude);
-                        $('#time_stamp').text(data.time_stamp);
+
+                             // Convertir la cadena de timestamp a un número (entero)
+                        var timestamp = parseInt(data.time_stamp);
+
+                           // Verificar si la conversión fue exitosa
+                       if (!isNaN(timestamp)) {
+                          // Crear un objeto Date a partir del timestamp
+                           var fecha = new Date(timestamp);
+                           var formattedTime = fecha.toLocaleString(); // Formatear la fecha y hora
+
+                           $('#time_stamp').text(formattedTime);
+                        } else {
+                           $('#time_stamp').text('Timestamp inválido'); // Manejar el caso de conversión fallida
+                        }
+
                         $('#error_message').text('');
 
                         // Actualizar la posición del marcador en el mapa
                         var latlng = L.latLng(data.latitude, data.longitude);
                         marker.setLatLng(latlng).update();
+                          // Agregar las coordenadas a la matriz
+                        coordinates.push(latlng);
+                        polyline.setLatLngs(coordinates); // Actualizar la polilínea
+
 
                         map.setView(latlng); // Centrar el mapa en las nuevas coordenadas
-                        map.setZoom(zoomLevel);
                     } else {
 
                         $('#error_message').text('Error: Datos en formato incorrecto.');
@@ -78,7 +109,7 @@
                     console.error('Error al cargar los últimos datos:');
                     console.error('Estado (status): ' + status);
                     console.error('Error (error): ' + error);
-                    $('#error_message').text('Error al cargar los datos. Verifique la direccion o que hayan datos en la DB');
+                    $('#error_message').text('Error al cargar los datos. Verifique la direccion o que hayan datos en la DB')
                 }
             });
         }
@@ -89,8 +120,13 @@
         // Cargar los últimos datos al cargar la página
         cargarUltimosDatos();
 
-        // Actualizar los últimos datos cada 5 segundos
-        setInterval(cargarUltimosDatos, 5000); // 5000 ms = 5 segundos
+        // Actualizar los últimos datos cada 2 segundos
+        setInterval(cargarUltimosDatos, 2000); // 5000 ms = 5 segundos
+        // Función para reiniciar la polilínea
+        function reiniciarYCrearPolilinea() {
+            coordinates = []; // Vaciar la matriz de coordenadas
+            polyline.setLatLngs(coordinates); // Limpiar la polilínea en el mapa
+        }
     </script>
 </body>
 </html>
