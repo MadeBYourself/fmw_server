@@ -71,3 +71,17 @@ function reiniciarYCrearPolilinea() {
     coordinates = []; // Vaciar la matriz de coordenadas
     polyline.setLatLngs(coordinates); // Limpiar la polilínea en el mapa
 }
+
+
+// Función para alternar la visibilidad de la sección RTL
+function toggleRTLVisibility() {
+    var rtlSection = document.getElementById('RTL');
+    if (rtlSection.style.display === 'none'|| rtlSection.style.display === '') {
+        rtlSection.style.display = 'block'; // Mostrar la sección RTL
+    } else {
+        rtlSection.style.display = 'none'; // Ocultar la sección RTL
+    }
+}
+
+// Agregar un evento de clic al botón para alternar la visibilidad
+document.getElementById('toggleRTL').addEventListener('click', toggleRTLVisibility);

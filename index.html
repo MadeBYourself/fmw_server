@@ -15,39 +15,45 @@
     </div>
 
     <div id="b"><div id="bar"></div></div>
+
     <div id="Buttons">
-        <div id="RealLocation"></div>
+        <ul>
+            <button id="toggleRTL">Real Time Location</button>
+            <button id="HIST">History</button>
+        </ul>
     </div>
     
     <div id="RTL">
         <div id="data">
             <ul id="lat">
                 <li id="const"><h2>Latitude</h2></li>
-                <li><div id="b"><div id="bar"></div></div></li>
+                <li><div id="b"><div id="bar" style="width: 10%;"></div></div></li>
                 <li><span id="latitude"></span></li>
             </ul>
             <ul id="lon">
                 <li id="const"><h2>Longitude</h2></li>
-                <li><div id="b"><div id="bar"></div></div></li>
+                <li><div id="b"><div id="bar" style="width: 10%;"></div></div></li>
                 <li><span id="longitude"></span></li>
                 </ul>
             <ul id="Tim">
                 <li id="const"><h2>Time</h2></li>
-                <li><div id="b"><div id="bar"></div></div></li>
+                <li><div id="b"><div id="bar" style="width: 10%;"></div></div></li>
                 <li><span id="time_stamp"></span></li>
             </ul>
+            <ul>
+                <div id="reset">
+                    <button onclick="reiniciarYCrearPolilinea()">Restart Track</button>
+                </div>
+            </ul>
         </div>
+    </div>
 
-        <div id="reset">
-            <button onclick="reiniciarYCrearPolilinea()">Restart Track</button>
-        </div>
-        <div id="error"> 
-            <p id="error_message" style="color: red;"></p> <!-- Elemento para mostrar errores --> 
-        </div>
-        <!-- Agregar un contenedor para el mapa -->
-        <div id="cartography">
-            <div id="map"></div>
-        </div>
+    <div id="error"> 
+        <p id="error_message" style="color: red;"></p> <!-- Elemento para mostrar errores --> 
+    </div>
+    <!-- Agregar un contenedor para el mapa -->
+    <div id="cartography">
+        <div id="map"></div>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
