@@ -57,6 +57,14 @@
     </div>
 
     <div id="History">
+        <form id="search-form">
+            <label for="start-datetime">Fecha y hora de inicio:</label>
+            <input type="datetime-local" id="start-datetime" name="start-datetime" required>
+            <label for="end-datetime">Fecha y hora de fin:</label>
+            <input type="datetime-local" id="end-datetime" name="end-datetime" required>
+            <button type="submit">Buscar</button>
+          </form>
+          <div id="map"></div>
     </div>
 
     <div id="error">
@@ -67,17 +75,7 @@
     <div id="cartography">
       <div id="map"></div>
     </div>
-    <h1>Seleccione un rango de fechas:</h1>
-    <form id="search-form">
-      <label for="start-datetime">Fecha y hora de inicio:</label>
-      <input type="datetime-local" id="start-datetime" name="start-datetime" required>
-      <label for="end-datetime">Fecha y hora de fin:</label>
-      <input type="datetime-local" id="end-datetime" name="end-datetime" required>
-      <button type="submit">Buscar</button>
-    </form>
-  
-    <h2>Mapa:</h2>
-    <div id="map"></div>
+
   
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
