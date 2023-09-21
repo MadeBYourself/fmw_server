@@ -17,7 +17,7 @@ if ($conn->connect_error) {
 
 if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['start-datetime']) && isset($_GET['end-datetime'])) {
     $startTimestamp = strtotime($_GET['start-datetime']) * 1000;
-    $endTimestamp = (strtotime($_GET['end-datetime'])) * 1000;
+    $endTimestamp = (strtotime($_GET['end-datetime']) + 18000) * 1000;
 
     // Consulta SQL para buscar en el rango de tiempo
     $sql = "SELECT latitude, longitude, time_stamp FROM ubication WHERE time_stamp >= $startTimestamp AND time_stamp <= $endTimestamp";
