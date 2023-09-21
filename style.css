@@ -8,16 +8,37 @@
 #Buttons{
     margin:10px 10px 10px 10px;
     display: flex;
-    flex-direction: row;
 }
 
 #RTL{
-    display: none;
+    display: flex;
 }
+#goto1{
+    display: flex;
+    justify-content: right;
+}
+/*? Records*/
 
-/*? History */
-#History{
-    display: none;
+#record{
+    display: flex;
+}
+#data_record{
+    display: flex;
+}
+#search-form{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+}
+#date_ul{
+    display: flex;
+    flex-direction: column;
+    margin: -10px 20px 10px 0;
+}
+#goto2{
+    display: flex;
+    justify-content: left;
 }
 
 /*? Reset Botton */
@@ -27,6 +48,7 @@
 }#error{
     display: flex;
 }button{
+    display: flex;
     background-color: black;
     color: white;
     border: none;
@@ -35,7 +57,7 @@
     padding: 8px 15px;
     text-decoration: none;
     font-weight: 650;
-    margin: 0 10px 0 10px;
+    margin: 0 0 0 0;
 }
 
 /*? Map control */
@@ -46,19 +68,22 @@
     display: flex;
     justify-self: center;
     width: 90%;
-    height: 540px;
+    height: 500px;
     border-radius: 20px;
 }
 
 /*? Title (Find My Wheels) */
 #title {
     display: flex;
+    align-items: end;
 }#logo{
-    width: 200px;}
+    width: 200px;
+    margin: 0 20px 0 20px;
+}
 
 #data{
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap ;
 }
 #const{
     display: flex;
@@ -77,5 +102,5 @@ h2{
     margin: 15px 0 5px 0
 }ul{
     display: block;
-    margin: 0px 50px 0px 0px;
+    margin: 0px 0px 0px 0px;
     list-style: none;}

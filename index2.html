@@ -1,86 +1,136 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Búsqueda de Datos y Mapa</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <style>
-    #map {
-      height: 400px;
-      width: 100%;
-    }
-  </style>
-</head>
-<body>
-  <h1>Seleccione un rango de fechas:</h1>
-  <form id="search-form">
-    <label for="start-datetime">Fecha y hora de inicio:</label>
-    <input type="datetime-local" id="start-datetime" name="start-datetime" required>
-    <label for="end-datetime">Fecha y hora de fin:</label>
-    <input type="datetime-local" id="end-datetime" name="end-datetime" required>
-    <button type="submit">Buscar</button>
-  </form>
+  <head>
+    <title>Búsqueda de Datos y Mapa</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="title">
+        <img id="logo" src="Resources/fmw_logo.png" alt="logotipe" />
+    </div>
+    </div>
 
-  <h2>Mapa:</h2>
-  <div id="map"></div>
+    <div id="b"><div id="bar" style="width: 600px;">
+    </div></div>
 
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script>
-    // Función para inicializar el mapa
-    function initMap() {
-      const map = L.map('map').setView([51.505, -0.09], 13);
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(map);
 
-      const polyline = L.polyline([], { color: 'red' }).addTo(map);
+    <div id="record">
+        <h1>Select Date/Time interval:</h1>
+    </div>
+   
+    <div id="data_record">
+        <form id="search-form">
+            <ul id="date_ul">
+                <h2 for="start-datetime" style="font-size: 14px;">Fecha y hora de inicio:</h2>
+                <input
+                  type="datetime-local"
+                  id="start-datetime"
+                  name="start-datetime"
+                  required
+                />
+            </ul>
+            <ul id="date_ul">
+                <h2 for="start-datetime" style="font-size: 14px;">Fecha y hora de inicio:</h2>
+                <input
+                type="datetime-local"
+                id="end-datetime"
+                name="end-datetime"
+                required
+              />
+            </ul>
+            <button type="submit" style="height: 40px;">Buscar</button>
+        </form>
+    </div>
 
-      // Escucha los eventos de entrada en los campos de fecha y hora
-      document.getElementById('start-datetime').addEventListener('input', function(event) {
-        const startDateTime = event.target.value;
-        document.getElementById('end-datetime').min = startDateTime;
-      });
 
-      document.getElementById('end-datetime').addEventListener('input', function(event) {
-        const endDateTime = event.target.value;
-        document.getElementById('start-datetime').max = endDateTime;
-      });
+    <div id="cartography">
+        <div id="map"></div>
+    </div>
 
-      // Escucha el evento de envío del formulario
-      document.getElementById('search-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        handleFormSubmit(map, polyline);
-      });
-    }
+    <div id="goto2">
+        <button id="page_RTL" style="height: 40px; margin-top: 20px;">Real Time Location</button>
+    </div>
+    
 
-    // Función para manejar el envío del formulario
-    function handleFormSubmit(map, polyline) {
-      const startDateTime = document.getElementById('start-datetime').value;
-      const endDateTime = document.getElementById('end-datetime').value;
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+      // Función para inicializar el mapa
+      function initMap() {
+        const map = L.map("map").setView([51.505, -0.09], 13);
 
-      // Hacer una solicitud al servidor para obtener las coordenadas
-      const url = `extract2.php?start-datetime=${startDateTime}&end-datetime=${endDateTime}`;
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        }).addTo(map);
 
-      fetch(url)
-        .then(response => response.json())
-        .then(response => {
-          if (Array.isArray(response) && response.length > 0) {
-            const latlngs = response.map(coord => [parseFloat(coord.latitude), parseFloat(coord.longitude)]);
-            polyline.setLatLngs(latlngs);
+        const polyline = L.polyline([], { color: "red" }).addTo(map);
 
-            // Centrar el mapa en las coordenadas de la polilínea
-            const bounds = polyline.getBounds();
-            map.fitBounds(bounds);
-          } else {
-            console.error('No se encontraron datos en esa fecha');
-          }
-        })
-        .catch(error => console.error('Error al obtener coordenadas:', error));
-    }
+        // Escucha los eventos de entrada en los campos de fecha y hora
+        document
+          .getElementById("start-datetime")
+          .addEventListener("input", function (event) {
+            const startDateTime = event.target.value;
+            document.getElementById("end-datetime").min = startDateTime;
+          });
 
-    // Inicializar el mapa
-    initMap();
-  </script>
-</body>
+        document
+          .getElementById("end-datetime")
+          .addEventListener("input", function (event) {
+            const endDateTime = event.target.value;
+            document.getElementById("start-datetime").max = endDateTime;
+          });
+
+        // Escucha el evento de envío del formulario
+        document
+          .getElementById("search-form")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+            handleFormSubmit(map, polyline);
+          });
+      }
+
+      // Función para manejar el envío del formulario
+      function handleFormSubmit(map, polyline) {
+        const startDateTime = document.getElementById("start-datetime").value;
+        const endDateTime = document.getElementById("end-datetime").value;
+
+        // Hacer una solicitud al servidor para obtener las coordenadas
+        const url = `extract2.php?start-datetime=${startDateTime}&end-datetime=${endDateTime}`;
+
+        fetch(url)
+          .then((response) => response.json())
+          .then((response) => {
+            if (Array.isArray(response) && response.length > 0) {
+              const latlngs = response.map((coord) => [
+                parseFloat(coord.latitude),
+                parseFloat(coord.longitude),
+              ]);
+              polyline.setLatLngs(latlngs);
+
+              // Centrar el mapa en las coordenadas de la polilínea
+              const bounds = polyline.getBounds();
+              map.fitBounds(bounds);
+            } else {
+              console.error("No se encontraron datos en esa fecha");
+            }
+          })
+          .catch((error) =>
+            console.error("Error al obtener coordenadas:", error)
+          );
+      }
+
+      // Obtén el botón por su ID
+        var botonRecords = document.getElementById("page_RTL");
+
+        // Agrega un evento clic al botón
+        botonRecords.addEventListener("click", function() {
+        // Redirecciona a la página de Records
+        window.location.href = "http://fmw2.ddns.net"; // Reemplaza con la URL a la que quieras redirigir
+        });
+      // Inicializar el mapa
+      initMap();
+    </script>
+  </body>
 </html>
-
