@@ -6,7 +6,6 @@ $servername = $config['host'];
 $username = $config['username'];
 $password = $config['password'];
 $dbname = $config['dbname'];
-$tablename = $config['tablename']
 
 // Establecer la conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
