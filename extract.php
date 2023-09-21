@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 
 // Leer las credenciales desde el archivo de configuración
 $config = parse_ini_file('config.ini');
-$tablename = $config['tablename']
+
 // Conexión a la base de datos
 $conexion = new mysqli($config['host'], $config['username'], $config['password'], $config['dbname']);
 
@@ -13,7 +13,7 @@ if ($conexion->connect_error) {
 }
 
 // Consulta SQL para obtener el último registro de la tabla
-$sql = "SELECT latitude, longitude, time_stamp FROM $tablename ORDER BY time_stamp DESC LIMIT 30";
+$sql = "SELECT latitude, longitude, time_stamp FROM ubication ORDER BY time_stamp DESC LIMIT 30";
 
 $resultado = $conexion->query($sql);
 
