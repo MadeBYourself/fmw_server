@@ -52,7 +52,7 @@ function cargarUltimosDatos() {
             console.error('Error al cargar los últimos datos:');
             console.error('Estado (status): ' + status);
             console.error('Error (error): ' + error);
-            $('#error_message').text('Error al cargar los datos. Verifique la dirección o que haya datos en la DB');
+            $('#error_message').text('Error al cargar los datos. Verifique la direccion o que hayan datos en la DB')
         }
     });
 }
@@ -71,6 +71,7 @@ function reiniciarYCrearPolilinea() {
     coordinates = []; // Vaciar la matriz de coordenadas
     polyline.setLatLngs(coordinates); // Limpiar la polilínea en el mapa
 }
+
 
 // Función para alternar la visibilidad de la sección RTL
 function toggleVisibility(sectionId) {
@@ -94,3 +95,4 @@ document.getElementById('toggleRTL').addEventListener('click', function () {
 document.getElementById('HIST').addEventListener('click', function () {
     toggleVisibility('History');
 });
+
