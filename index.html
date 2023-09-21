@@ -1,83 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <title>Find My Wheels</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div id="title">
-        <img id="logo" src="Resources/fmw_logo.png" alt="logotipe">
+      <img id="logo" src="Resources/fmw_logo.png" alt="logotipe" />
     </div>
 
     <div id="b"><div id="bar"></div></div>
 
     <div id="Buttons">
-        <ul>
-            <button id="toggleRTL">Real Time Location</button>
-            <button id="HIST">History</button>
-        </ul>
+      <ul>
+        <button id="toggleRTL">Real Time Location</button>
+        <button id="HIST">History</button>
+      </ul>
     </div>
-    
+
     <div id="RTL">
-        <div id="data">
-            <ul id="lat">
-                <li id="const"><h2>Latitude</h2></li>
-                <li><div id="b"><div id="bar" style="width: 10%;"></div></div></li>
-                <li><span id="latitude"></span></li>
-            </ul>
-            <ul id="lon">
-                <li id="const"><h2>Longitude</h2></li>
-                <li><div id="b"><div id="bar" style="width: 10%;"></div></div></li>
-                <li><span id="longitude"></span></li>
-                </ul>
-            <ul id="Tim">
-                <li id="const"><h2>Time</h2></li>
-                <li><div id="b"><div id="bar" style="width: 10%;"></div></div></li>
-                <li><span id="time_stamp"></span></li>
-            </ul>
-            <ul>
-                <div id="reset">
-                    <button onclick="reiniciarYCrearPolilinea()">Restart Track</button>
-                </div>
-            </ul>
-        </div>
+      <div id="data">
+        <ul id="lat">
+          <li id="const"><h2>Latitude</h2></li>
+          <li>
+            <div id="b"><div id="bar" style="width: 10%"></div></div>
+          </li>
+          <li><span id="latitude"></span></li>
+        </ul>
+        <ul id="lon">
+          <li id="const"><h2>Longitude</h2></li>
+          <li>
+            <div id="b"><div id="bar" style="width: 10%"></div></div>
+          </li>
+          <li><span id="longitude"></span></li>
+        </ul>
+        <ul id="Tim">
+          <li id="const"><h2>Time</h2></li>
+          <li>
+            <div id="b"><div id="bar" style="width: 10%"></div></div>
+          </li>
+          <li><span id="time_stamp"></span></li>
+        </ul>
+        <ul>
+          <div id="reset">
+            <button onclick="reiniciarYCrearPolilinea()">Restart Track</button>
+          </div>
+        </ul>
+      </div>
     </div>
 
     <div id="History">
-        <form id="search-form">
-            <label for="start-datetime">Start | Date, Time:</label>
-            <input
-              type="datetime-local"
-              id="start-datetime"
-              name="start-datetime"
-              required
-            />
-            <label for="end-datetime">End | Date, Time:</label>
-            <input
-              type="datetime-local"
-              id="end-datetime"
-              name="end-datetime"
-              required
-            />
-            <button type="submit">Buscar</button>
-          </form>
+      <form id="search-form">
+        <label for="start-datetime">Start | Date, Time:</label>
+        <input
+          type="datetime-local"
+          id="start-datetime"
+          name="start-datetime"
+          required
+        />
+        <label for="end-datetime">End | Date, Time:</label>
+        <input
+          type="datetime-local"
+          id="end-datetime"
+          name="end-datetime"
+          required
+        />
+        <button type="submit">Buscar</button>
+      </form>
     </div>
 
-    <div id="error"> 
-        <p id="error_message" style="color: red;"></p> <!-- Elemento para mostrar errores --> 
+    <div id="error">
+      <p id="error_message" style="color: red"></p>
+      <!-- Elemento para mostrar errores -->
     </div>
     <!-- Agregar un contenedor para el mapa -->
     <div id="cartography">
-        <div id="map"></div>
+      <div id="map"></div>
     </div>
+    <script>
+      function initMap() {
+        const map = L.map("map").setView([51.505, -0.09], 13);
+
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        }).addTo(map);
+
+        const polyline = L.polyline([], { color: "red" }).addTo(map);
+
+        // Escucha el evento input en el campo de fecha y hora de inicio
+        document
+          .getElementById("start-datetime")
+          .addEventListener("input", function (event) {
+            const startDateTime = event.target.value;
+            // Establece el atributo min del campo de fecha y hora final
+            document.getElementById("end-datetime").min = startDateTime;
+          });
+        // Escucha el evento input en el campo de fecha y hora de final
+        document
+          .getElementById("end-datetime")
+          .addEventListener("input", function (event) {
+            const endDateTime = event.target.value;
+            // Establece el atributo min del campo de fecha y hora final
+            document.getElementById("start-datetime").max = endDateTime;
+          });
+
+        document
+          .getElementById("search-form")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const startDateTime =
+              document.getElementById("start-datetime").value;
+            const endDateTime = document.getElementById("end-datetime").value;
+
+            // Hacer una solicitud al servidor para obtener las coordenadas
+            const url = `extract2.php?start-datetime=${startDateTime}&end-datetime=${endDateTime}`;
+
+            fetch(url)
+              .then((response) => response.json())
+              .then((response) => {
+                if (Array.isArray(response) && response.length > 0) {
+                  const latlngs = response.map((coord) => [
+                    parseFloat(coord.latitude),
+                    parseFloat(coord.longitude),
+                  ]);
+                  polyline.setLatLngs(latlngs);
+
+                  // Centrar el mapa en las coordenadas de la polilínea
+                  const bounds = polyline.getBounds();
+                  map.fitBounds(bounds);
+                } else {
+                  console.error("no se encontraron datos en esa fecha");
+                }
+              })
+              .catch((error) =>
+                console.error("Error fetching coordinates:", error)
+              );
+          });
+      }
+
+      // Inicializar el mapa
+      initMap();
+    </script>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="script.js"></script>
-    <script src="script2.js"></script>
-</body>
+  </body>
 </html>
