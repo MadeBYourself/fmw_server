@@ -17,9 +17,7 @@ if ($conn->connect_error) {
 
 if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['start-datetime']) && isset($_GET['end-datetime'])) {
     $startTimestamp = strtotime($_GET['start-datetime']) * 1000;
-    $response[] = $startTimestamp;
     $endTimestamp = (strtotime($_GET['end-datetime']) + 86400) * 1000;
-    $response[] = $endTimestamp;
 
     // Consulta SQL para buscar en el rango de tiempo
     $sql = "SELECT latitude, longitude, time_stamp FROM ubication WHERE time_stamp >= $startTimestamp AND time_stamp <= $endTimestamp";
@@ -45,6 +43,8 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['start-datetime']) && is
 
     // Convertir el array a JSON y mostrarlo
     echo json_encode($response);
+    echo json_encode($startTimestamp);
+    echo json_encode($endTimestamp);
 }
 
 $conn->close();
