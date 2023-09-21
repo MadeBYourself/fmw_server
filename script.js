@@ -74,14 +74,25 @@ function reiniciarYCrearPolilinea() {
 
 
 // Función para alternar la visibilidad de la sección RTL
-function toggleRTLVisibility() {
-    var rtlSection = document.getElementById('RTL');
-    if (rtlSection.style.display === 'none'|| rtlSection.style.display === '') {
-        rtlSection.style.display = 'block'; // Mostrar la sección RTL
+function toggleVisibility(sectionId) {
+    var section = document.getElementById(sectionId);
+    var otherSectionId = sectionId === 'RTL' ? 'History' : 'RTL';
+    var otherSection = document.getElementById(otherSectionId);
+
+    if (section.style.display === 'none' || section.style.display === '') {
+        section.style.display = 'flex'; // Mostrar la sección seleccionada
+        otherSection.style.display = 'none'; // Ocultar la otra sección
     } else {
-        rtlSection.style.display = 'none'; // Ocultar la sección RTL
+        section.style.display = 'none'; // Ocultar la sección seleccionada
     }
 }
 
-// Agregar un evento de clic al botón para alternar la visibilidad
-document.getElementById('toggleRTL').addEventListener('click', toggleRTLVisibility);
+// Agregar eventos de clic a los botones para alternar la visibilidad
+document.getElementById('toggleRTL').addEventListener('click', function () {
+    toggleVisibility('RTL');
+});
+
+document.getElementById('HIST').addEventListener('click', function () {
+    toggleVisibility('History');
+});
+

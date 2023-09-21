@@ -48,6 +48,26 @@
         </div>
     </div>
 
+    <div id="History">
+        <form id="search-form">
+            <label for="start-datetime">Start | Date, Time:</label>
+            <input
+              type="datetime-local"
+              id="start-datetime"
+              name="start-datetime"
+              required
+            />
+            <label for="end-datetime">End | Date, Time:</label>
+            <input
+              type="datetime-local"
+              id="end-datetime"
+              name="end-datetime"
+              required
+            />
+            <button type="submit">Buscar</button>
+          </form>
+    </div>
+
     <div id="error"> 
         <p id="error_message" style="color: red;"></p> <!-- Elemento para mostrar errores --> 
     </div>
@@ -58,5 +78,6 @@
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="script.js"></script>
+    <script src="script2.js"></script>
 </body>
 </html>
