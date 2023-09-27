@@ -1,6 +1,7 @@
 *{
     justify-content: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
 }
 
 /*? RTL: PAGE */
@@ -17,8 +18,16 @@
     display: flex;
     justify-content: right;
 }
-/*? Records*/
 
+#data{
+    display: flex;
+    flex-wrap: wrap ;
+}
+#const{
+    display: flex;
+}
+
+/*? Records*/
 #record{
     display: flex;
 }
@@ -75,19 +84,24 @@
 /*? Title (Find My Wheels) */
 #title {
     display: flex;
-    align-items: end;
+    align-content: center;
+    background-color: black;
+    border-radius: 20px;
+    justify-content: space-between;
 }#logo{
+    display: block;
     width: 200px;
-    margin: 0 20px 0 20px;
+    margin: 10px 0 5px 80px;
 }
 
-#data{
-    display: flex;
-    flex-wrap: wrap ;
-}
-#const{
+#entitle{
     display: flex;
 }
+#entitle li{
+    display: flex;
+    margin: 0 50px 0 50px;
+}
+
 
 /*? Bar */
 #b{display: flex;}
