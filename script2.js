@@ -63,13 +63,27 @@ function initMap() {
       );
   }
   
+  $.getJSON('config.json', function(data) {
+    var currentPC = 'pc1'; // Cambia esto según tu PC actual
+    var pageTitle = data[currentPC];
+    document.title = pageTitle;
+});
+
+
   // Obtén el botón por su ID
   var botonRecords = document.getElementById("page_RTL");
-  
+  var url; // Declara la variable fuera de la función
+
+$.getJSON('config.json', function(data) {
+    var page_url = 'url2'; // Cambia esto según tu PC actual
+    var name = data.name;
+    document.title = name
+    url = data[page_url]; // Asigna el valor de la URL aquí
+});
   // Agrega un evento clic al botón
   botonRecords.addEventListener("click", function() {
     // Redirecciona a la página de Records
-    window.location.href = "http://fmw2.ddns.net"; // Reemplaza con la URL a la que quieras redirigir
+    window.location.href = url; // Reemplaza con la URL a la que quieras redirigir
   });
   
   // Inicializar el mapa
