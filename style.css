@@ -4,21 +4,21 @@
     
 }
 
-/*? RTL: PAGE */
+/*? ---------- RTL: PAGE ---------- */
 
 #Buttons{
     margin:10px 10px 10px 10px;
     display: flex;
 }
-
 #RTL{
     display: flex;
 }
 #goto1{
     display: flex;
     justify-content: right;
+    height: fit-content;
+    align-items: center;
 }
-
 #data{
     display: flex;
     flex-wrap: wrap ;
@@ -26,8 +26,14 @@
 #const{
     display: flex;
 }
+#page_RTL,#page_HIST{
+    margin: 0 15px 0 15px;
+    background-color: white;
+    color: black;
+}
 
-/*? Records*/
+
+/*? ---------- Records ---------- */
 #record{
     display: flex;
 }
@@ -48,9 +54,10 @@
 #goto2{
     display: flex;
     justify-content: left;
+    align-items: center;
 }
 
-/*? Reset Botton */
+/*? ---------- Reset Botton ----------*/
 #reset{
     display: flex;
     margin:  10px 0 0 0;
@@ -67,9 +74,11 @@
     text-decoration: none;
     font-weight: 650;
     margin: 0 0 0 0;
+    cursor: pointer;
+    transition: scale 0.1s;
 }
 
-/*? Map control */
+/*? ---------- Map control ---------- */
 #cartography{
     display: flex;
 }
@@ -81,17 +90,18 @@
     border-radius: 20px;
 }
 
-/*? Title (Find My Wheels) */
+/*? ---------- Title (Find My Wheels) ---------- */
 #title {
     display: flex;
-    align-content: center;
+    align-items: center;
     background-color: black;
     border-radius: 20px;
     justify-content: space-between;
+    flex-wrap: wrap;
 }#logo{
     display: block;
     width: 200px;
-    margin: 10px 0 5px 80px;
+    margin: 10px 0 5px 106px;
 }
 
 #entitle{
@@ -103,7 +113,7 @@
 }
 
 
-/*? Bar */
+/*? ---------- Bar ---------- */
 #b{display: flex;}
 #bar{
     width: 50%;
@@ -111,10 +121,16 @@
     border-radius: 5px;
     background-color: black;}
 
-/*? Text */
+/*? ---------- Text ---------- */
 h2{
     margin: 15px 0 5px 0
 }ul{
     display: block;
     margin: 0px 0px 0px 0px;
     list-style: none;}
+
+/*? ---------- Animation ---------- */
+
+button:hover {
+    scale: 0.9;
+}

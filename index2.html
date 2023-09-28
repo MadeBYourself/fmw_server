@@ -6,15 +6,19 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+
     <div id="title">
-      <img id="logo" src="Resources/fmw_logo.png" alt="logotipe" />
+      <div id="goto2">
+        <button id="page_HIST" style="height: 40px;">Real Time Location</button>
+      </div>
+      <img id="logo" src="Resources/fmw_logo.png" alt="logotipe" style="margin: 10px 0 5px -215px;"/>
+      <div id="block" style="width: fit-content; height: fit-content"></div>
     </div>
-    <div id="b">
-      <div id="bar" style="width: 600px;"></div>
-    </div>
+
     <div id="record">
       <h1 style="font-size: 20px;">Select Date/Time interval:</h1>
     </div>
+
     <div id="data_record">
       <form id="search-form">
         <ul id="date_ul">
@@ -35,15 +39,14 @@
             required
           />
         </ul>
-        <button type="submit" style="height: 40px;">Buscar</button>
+        <button type="submit" style="height: 40px;">Search</button>
       </form>
     </div>
+
     <div id="cartography">
       <div id="map"></div>
     </div>
-    <div id="goto2">
-      <button id="page_RTL" style="height: 40px; margin-top: 20px;">Real Time Location</button>
-    </div>
+
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="script2.js"></script>
   </body>
