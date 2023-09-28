@@ -20,18 +20,16 @@ if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['start-datetime']) && is
     $endTimestamp = (strtotime($_GET['end-datetime']) + 18000) * 1000;
 
     // Consulta SQL para buscar en el rango de tiempo
-    $sql = "SELECT latitude, longitude, time_stamp FROM ubication WHERE time_stamp >= $startTimestamp AND time_stamp <= $endTimestamp";
+    $sql = "SELECT latitude, longitude FROM ubication WHERE time_stamp >= $startTimestamp AND time_stamp <= $endTimestamp";
     $result = $conn->query($sql);
 
     $response = array();  // Array para almacenar los resultados
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            $time_stamp = date("Y-m-d H:i:s", $row["time_stamp"] / 1000);  // Convertir el timestamp a formato de fecha y hora
             $entry = array(
                 'latitude' => $row["latitude"],
-                'longitude' => $row["longitude"],
-                //'time_stamp' => $time_stamp
+                'longitude' => $row["longitude"], 
             );
             $response[] = $entry;
         }
