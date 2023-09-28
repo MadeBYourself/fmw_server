@@ -5,7 +5,7 @@ xhr.send();
 var map = L.map('map').setView([10.9639, -74.7964],12);
 var bigCircle;
 var smallCircles = [];
-
+var selectedMarker = L.marker([0, 0], { opacity: 0 }).addTo(map);
 
 
 if (xhr.status === 200) {
@@ -182,6 +182,7 @@ function initMap() {
               });
               if (selectedCircle) {
                   selectedCircle.setStyle({ color: 'black' });
+                  selectedMarker.setLatLng(selectedCircle.getLatLng()).setOpacity(1);
               }
           });
       },
