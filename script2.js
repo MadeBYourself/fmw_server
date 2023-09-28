@@ -1,6 +1,28 @@
+// Cargar config.json de forma síncrona (bloqueante)
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "config.json", false); // El tercer parámetro en false indica carga síncrona
+xhr.send();
+
+if (xhr.status === 200) {
+  var data = JSON.parse(xhr.responseText);
+  var name = data.name;
+  document.title = name;
+  var page_url = 'url2'; // Utiliza la clave "url2" para el URL
+  var url = data[page_url]; // Asigna el valor de la URL aquí
+
+  // Obtén el botón por su ID
+  var botonRecords = document.getElementById("page_HIST");
+
+  // Agrega un evento clic al botón
+  botonRecords.addEventListener("click", function() {
+    // Redirecciona a la página de "url2"
+    window.location.href = url; // Utiliza el URL almacenado en "url2"
+  });
+}
+
 // Función para inicializar el mapa
 function initMap() {
-    const map = L.map("map").setView([51.505, -0.09], 13);
+    const map = L.map('map').setView([10.9639, -74.7964], 12);
   
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:
@@ -63,28 +85,8 @@ function initMap() {
       );
   }
   
-  $.getJSON('config.json', function(data) {
-    var currentPC = 'pc1'; // Cambia esto según tu PC actual
-    var pageTitle = data[currentPC];
-    document.title = pageTitle;
-});
-
-
   // Obtén el botón por su ID
-  var botonRecords = document.getElementById("page_RTL");
-  var url; // Declara la variable fuera de la función
 
-$.getJSON('config.json', function(data) {
-    var page_url = 'url2'; // Cambia esto según tu PC actual
-    var name = data.name;
-    document.title = name
-    url = data[page_url]; // Asigna el valor de la URL aquí
-});
-  // Agrega un evento clic al botón
-  botonRecords.addEventListener("click", function() {
-    // Redirecciona a la página de Records
-    window.location.href = url; // Reemplaza con la URL a la que quieras redirigir
-  });
   
   // Inicializar el mapa
   initMap();

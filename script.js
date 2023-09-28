@@ -72,21 +72,25 @@ function reiniciarYCrearPolilinea() {
     polyline.setLatLngs(coordinates); // Limpiar la polilínea en el mapa
 }
 
-// Obtén el botón por su ID
-var botonRecords = document.getElementById("page_HIST");
-var url; // Declara la variable fuera de la función
+// Cargar config.json de forma síncrona (bloqueante)
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "config.json", false); // El tercer parámetro en false indica carga síncrona
+xhr.send();
 
-$.getJSON('config.json', function(data) {
-    var page_url = 'url'; // Cambia esto según tu PC actual
-    var name = data.name;
-    document.title = name
+if (xhr.status === 200) {
+  var data = JSON.parse(xhr.responseText);
+  var name = data.name;
+  document.title = name;
+  var page_url = 'url'; // Utiliza la clave "url2" para el URL
+  var url = data[page_url]; // Asigna el valor de la URL aquí
 
-    url = data[page_url]; // Asigna el valor de la URL aquí
-});
+  // Obtén el botón por su ID
+  var botonRecords = document.getElementById("page_RTL");
 
-// Agrega un evento clic al botón
-botonRecords.addEventListener("click", function() {
-  // Redirecciona a la página de Records
-  window.location.href = url; // Utiliza la URL almacenada aquí
-});
+  // Agrega un evento clic al botón
+  botonRecords.addEventListener("click", function() {
+    // Redirecciona a la página de "url2"
+    window.location.href = url; // Utiliza el URL almacenado en "url2"
+  });
+}
 
