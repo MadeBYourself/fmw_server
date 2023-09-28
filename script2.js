@@ -2,6 +2,7 @@
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "config.json", false); // El tercer parámetro en false indica carga síncrona
 xhr.send();
+var map = L.map('map').setView([10.9639, -74.7964],12);
 var bigCircle;
 var smallCircles = [];
 
@@ -26,7 +27,6 @@ if (xhr.status === 200) {
 // Función para inicializar el mapa
 function initMap() {
     var map = L.map('map').setView([10.9639, -74.7964],12);
-  
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
