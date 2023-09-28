@@ -58,6 +58,26 @@
     align-items: center;
 }
 
+#container{
+    display: none;
+    flex-direction: column;
+}
+.slider{
+    margin: 0 500px 5px 525px;
+}.time_display{
+    margin: 0 590px 10px 590px;
+    font-weight: bold;
+}
+
+#toggleButton{
+    display: none;
+    margin: 10px 460px 10px 500px;
+}
+
+#b_are{
+    align-items: center;
+
+}
 /*? ---------- Reset Botton ----------*/
 #reset{
     display: flex;
