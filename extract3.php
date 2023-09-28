@@ -30,7 +30,7 @@ if (!is_numeric($lat) || !is_numeric($lng) || !is_numeric($radius_in_deg)) {
 
 $sql = "SELECT time_stamp, latitude, longitude
 FROM ubication
-WHERE (6371 * acos(cos(radians($lat)) * cos(radians(latitude)) * cos(radians(longitude) - radians($lng)) + sin(radians($lat)) * sin(radians(latitude)))) <= $radius_in_deg" AND time_stamp >= $startTimestamp AND time_stamp <= $endTimestamp";
+WHERE (6371 * acos(cos(radians($lat)) * cos(radians(latitude)) * cos(radians(longitude) - radians($lng)) + sin(radians($lat)) * sin(radians(latitude)))) <= $radius_in_deg AND time_stamp >= $startTimestamp AND time_stamp <= $endTimestamp";
 $result = $conn->query($sql);
 
 $data = array();
