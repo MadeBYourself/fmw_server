@@ -146,7 +146,7 @@ function initMap() {
   function mapClickHandler(e) {
     const startDateTime = document.getElementById("start-datetime").value;
     const endDateTime = document.getElementById("end-datetime").value;
-    
+    selectedMarker.setOpacity(0)
     slider.value = 0;  // Restablecer el valor del slider
     timestampDisplay.innerText = '';  // Borrar el texto de timestamp
     // Remover los círculos existentes
