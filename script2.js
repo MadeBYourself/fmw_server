@@ -22,7 +22,7 @@ if (xhr.status === 200) {
 
 // Función para inicializar el mapa
 function initMap() {
-    const map = L.map('map').setView([10.9639, -74.7964], 12);
+    var map = L.map('map').setView([10.9639, -74.7964],12);
   
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:
@@ -84,10 +84,5 @@ function initMap() {
         console.error("Error al obtener coordenadas:", error)
       );
   }
-  
-  // Obtén el botón por su ID
-
-  
-  // Inicializar el mapa
   initMap();
   
