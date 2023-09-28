@@ -66,6 +66,15 @@ function initMap() {
   
     // Hacer una solicitud al servidor para obtener las coordenadas
     const url = `extract2.php?start-datetime=${startDateTime}&end-datetime=${endDateTime}`;
+    selectedMarker.setOpacity(0)
+    slider.value = 0;  // Restablecer el valor del slider
+    timestampDisplay.innerText = '';  // Borrar el texto de timestamp
+    // Remover los círculos existentes
+    bigCircle && map.removeLayer(bigCircle);
+    smallCircles.forEach(function(circle) {
+        map.removeLayer(circle);
+    });
+    smallCircles = [];
   
     fetch(url)
       .then((response) => response.json())
@@ -80,23 +89,45 @@ function initMap() {
           // Centrar el mapa en las coordenadas de la polilínea
           const bounds = polyline.getBounds();
           map.fitBounds(bounds);
+          var container = document.getElementById("container")
+          var buttonToggle = document.getElementById("toggleButton")
+          if (container.style.display === "none" || container.style.display === "") {
+            container.style.display = "flex";
+            buttonToggle.style.display = "flex"
+          }
+
         } else {
-          console.error("No se encontraron datos en esa fecha");
+          alert("No se encontraron datos en esa fecha");
         }
       })
       .catch((error) =>
         console.error("Error al obtener coordenadas:", error)
       );
   }
+  // Obtener el contenedor
+  var contenedor = document.getElementById('container');
+
+  // Crear el slider
   var slider = document.createElement('input');
   slider.type = 'range';
   slider.min = 0;
   slider.value = 0;
-  document.body.appendChild(slider);
+
+  // Agregar una clase para estilizar el slider con CSS
+  slider.classList.add('slider');
+
+  // Agregar el slider al contenedor
+  contenedor.appendChild(slider);
 
   // Crear un elemento para mostrar el timestamp
   var timestampDisplay = document.createElement('div');
-  document.body.appendChild(timestampDisplay);
+
+  // Agregar una clase para estilizar el elemento con CSS
+  timestampDisplay.classList.add('time_display');
+
+  // Agregar el elemento al contenedor
+  contenedor.appendChild(timestampDisplay);
+
 
   // Obtener una referencia al botón
   var toggleButton = document.getElementById('toggleButton');
@@ -104,11 +135,11 @@ function initMap() {
   // Agregar un evento de escucha al botón
   toggleButton.addEventListener("click", function(){
     var button = document.getElementById('toggleButton');
-    if (button.innerText ==='Unlock') {
-        button.innerText = 'lock';
+    if (button.innerText ==='Unlock Area Picker') {
+        button.innerText = 'Lock Area Picker';
         map.on("click", mapClickHandler);
     } else {
-        button.innerText = 'Unlock';
+        button.innerText = 'Unlock Area Picker';
         map.off("click", mapClickHandler);
     }
   });
@@ -169,7 +200,7 @@ function initMap() {
           // Asociar evento al slider para actualizar el timestamp y resaltar el círculo
           slider.addEventListener('input', function() {
               var selectedTimestamp = data[this.value].time_stamp;
-              timestampDisplay.innerHTML = 'Timestamp: ' + selectedTimestamp;
+              timestampDisplay.innerHTML = 'Date: ' + selectedTimestamp;
 
               // Remover el resaltado de los círculos
               smallCircles.forEach(function(circle) {
