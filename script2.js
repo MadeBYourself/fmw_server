@@ -133,7 +133,7 @@ function initMap() {
         lat: e.latlng.lat,
         lng: e.latlng.lng,
         radius: bigCircle.getRadius(),
-        startdDataTime,
+        startDataTime,
         endDateTime
     };
 
