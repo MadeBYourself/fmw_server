@@ -26,7 +26,7 @@ if (xhr.status === 200) {
 
 // Función para inicializar el mapa
 function initMap() {
-    var map = L.map('map').setView([10.9639, -74.7964],12);
+    
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
