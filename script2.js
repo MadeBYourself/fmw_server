@@ -51,14 +51,12 @@ function initMap() {
       });
 
     // Escucha el evento de envío del formulario
-    var b_toggle = document.getElementById("b_toggle")
     document
       .getElementById("search-form")
       .addEventListener("submit", function (event) {
         event.preventDefault();
         handleFormSubmit(map, polyline);
       });
-
   }
 
   // Función para manejar el envío del formulario
