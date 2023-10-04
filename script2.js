@@ -57,9 +57,6 @@ function initMap() {
       .addEventListener("submit", function (event) {
         event.preventDefault();
         handleFormSubmit(map, polyline);
-        if (b_toggle.style.display === "none" || b_toggle.style.display === "") {
-          b_toggle.style.display = "block";
-        }
       });
 
   }
