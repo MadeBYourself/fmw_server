@@ -52,7 +52,7 @@ function initMap() {
 
     // Escucha el evento de envío del formulario
     document
-      .getElementById("search-form")
+      .getElementById("content")
       .addEventListener("submit", function (event) {
         event.preventDefault();
         handleFormSubmit(map, polyline);
@@ -91,11 +91,10 @@ function initMap() {
           // Centrar el mapa en las coordenadas de la polilínea
           const bounds = polyline.getBounds();
           map.fitBounds(bounds);
-          var container = document.getElementById("container")
+          var b_toggle = document.getElementById("b_toggle")
           var buttonToggle = document.getElementById("toggleButton")
-          if (container.style.display === "none" || container.style.display === "") {
-            container.style.display = "flex";
-            buttonToggle.style.display = "flex"
+          if (b_toggle.style.display === "none" || b_toggle.style.display === "") {
+            b_toggle.style.display = "flex";
           }
 
         } else {
