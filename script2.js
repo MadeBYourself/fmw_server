@@ -94,7 +94,7 @@ function initMap() {
           var b_toggle = document.getElementById("b_toggle")
           var buttonToggle = document.getElementById("toggleButton")
           if (b_toggle.style.display === "none" || b_toggle.style.display === "") {
-            b_toggle.style.display = "flex";
+            b_toggle.style.display = "block";
           }
 
         } else {
@@ -148,9 +148,11 @@ function initMap() {
     var button = document.getElementById('toggleButton');
     if (button.innerText ==='Start Location Search') {
         button.innerText = 'Stop Location Search';
+        contenedor.style.display = "flex";
         map.on("click", mapClickHandler);
     } else {
         button.innerText = 'Start Location Search';
+        contenedor.style.display = "none";
         map.off("click", mapClickHandler);
     }
   });
