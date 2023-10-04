@@ -4,6 +4,18 @@
     
 }
 
+
+/*? ---------- CONTENT ---------- */
+
+#content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
 /*? ---------- RTL: PAGE ---------- */
 
 #Buttons{
@@ -21,8 +33,6 @@
 }
 #data{
     display: flex;
-    flex-wrap: wrap ;
-    margin: 0px -55px 0px 0px;
 }
 #const{
     display: flex;
@@ -40,6 +50,8 @@
 }
 #data_record{
     display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 #search-form{
     display: flex;
@@ -62,25 +74,32 @@
     display: none;
     flex-direction: column;
     align-items: center;
+    transition: display 0.2s;
 }
 .slider{
     margin: 0 0px 5px 0px;
-    width: 400px;
+    width: 200px;
 }.time_display{
     margin: 0 0px 10px 0px;
     font-weight: bold;
 }
 
-#toggleButton{
+#b_toggle{
     display: none;
-    width: 400px;
+    transition: display 0.2s;
+}
+#t_bu{
+    display: flex;
+}
+#toggleButton{
+    display: block;
     margin: 10px 0px 10px 0px;
 }
 
 #b_are{
     align-items: center;
-
 }
+
 /*? ---------- Reset Botton ----------*/
 #reset{
     display: flex;
@@ -121,11 +140,10 @@
     background-color: black;
     border-radius: 20px;
     justify-content: space-between;
-    flex-wrap: wrap;
 }#logo{
     display: block;
     width: 200px;
-    margin: 10px 0 5px 106px;
+    margin: 10px 0 5px 0;
 }
 
 #entitle{

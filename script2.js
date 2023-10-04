@@ -51,12 +51,17 @@ function initMap() {
       });
 
     // Escucha el evento de envío del formulario
+    var b_toggle = document.getElementById("b_toggle")
     document
       .getElementById("search-form")
       .addEventListener("submit", function (event) {
         event.preventDefault();
         handleFormSubmit(map, polyline);
+        if (b_toggle.style.display === "none" || b_toggle.style.display === "") {
+          b_toggle.style.display = "block";
+        }
       });
+
   }
 
   // Función para manejar el envío del formulario
@@ -124,7 +129,7 @@ function initMap() {
 
   // Agregar una clase para estilizar el slider con CSS
   slider.classList.add('slider');
-  slider.classList.add("slider2");
+  slider2.classList.add("slider");
 
   // Agregar el slider al contenedor
   contenedor.appendChild(slider);
@@ -147,11 +152,11 @@ function initMap() {
   // Agregar un evento de escucha al botón
   toggleButton.addEventListener("click", function(){
     var button = document.getElementById('toggleButton');
-    if (button.innerText ==='Unlock Area Picker') {
-        button.innerText = 'Lock Area Picker';
+    if (button.innerText ==='Start Location Search') {
+        button.innerText = 'Stop Location Search';
         map.on("click", mapClickHandler);
     } else {
-        button.innerText = 'Unlock Area Picker';
+        button.innerText = 'Start Location Search';
         map.off("click", mapClickHandler);
     }
   });

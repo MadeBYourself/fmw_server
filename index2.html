@@ -12,39 +12,53 @@
       <div id="goto2">
         <button id="page_HIST" style="height: 40px;">Real Time Location</button>
       </div>
-      <img id="logo" src="Resources/fmw_logo.png" alt="logotipe" style="margin: 10px 0 5px -215px;"/>
-      <div id="block" style="width: fit-content; height: fit-content"></div>
+      <img id="logo" src="Resources/fmw_logo.png" alt="logotipe" style="margin: 10px 0 5px 0;"/>
+      <div id="block" style="width: 215px; height: fit-content"></div>
     </div>
 
-    <div id="record">
-      <h1 style="font-size: 20px;">Select Date/Time interval:</h1>
-    </div>
+    <div id="content">
+      
+      <div id="data_record">
+        <div id="record">
+          <h1 style="font-size: 20px;">Select Date/Time interval:</h1>
+        </div>
+        <form id="search-form">
+          <ul id="date_ul">
+            <h2 for="start-datetime" style="font-size: 14px;">Start Date & Time:</h2>
+            <input
+              type="datetime-local"
+              id="start-datetime"
+              name="start-datetime"
+              required
+            />
+          </ul>
+          <ul id="date_ul">
+            <h2 for="start-datetime" style="font-size: 14px;">End Date & Time:</h2>
+            <input
+              type="datetime-local"
+              id="end-datetime"
+              name="end-datetime"
+              required
+            />
+          </ul>
+          
+        </form>
+        <button type="submit" style="height: 40px; width: 150px;">Search</button>
+      </div>
+      <div id="b_toggle">
+        <div id="record">
+          <h1 style="font-size: 20px;">Press start and click the map:</h1>
+        </div>
+        <div id="t_bu">
+          <button id="toggleButton" style="width: fit-content;">
+            <span id="button_text">Start Location Search</span>
+          </button>
+        </div>
 
-    <div id="data_record">
-      <form id="search-form">
-        <ul id="date_ul">
-          <h2 for="start-datetime" style="font-size: 14px;">Start Date & Time:</h2>
-          <input
-            type="datetime-local"
-            id="start-datetime"
-            name="start-datetime"
-            required
-          />
-        </ul>
-        <ul id="date_ul">
-          <h2 for="start-datetime" style="font-size: 14px;">End Date & Time:</h2>
-          <input
-            type="datetime-local"
-            id="end-datetime"
-            name="end-datetime"
-            required
-          />
-        </ul>
-        <button type="submit" style="height: 40px;">Search</button>
-      </form>
-    </div>
-    <div id="container">
-        <button id="toggleButton">Unlock Area Picker </button>
+        <div id="container">
+        </div>
+      </div>
+
     </div>
     <div id="cartography">
       <div id="map"></div>
