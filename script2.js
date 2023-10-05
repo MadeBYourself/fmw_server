@@ -107,7 +107,7 @@ function initMap() {
   }
   // Obtener el contenedor
   var contenedor = document.getElementById('container');
-  var contenedor2 = document.getElementById('container2');
+  var contenedor2 = document.getElementById('container');
 
   // Crear el slider
   var slider = document.createElement('input');
@@ -143,6 +143,8 @@ function initMap() {
 
   // Obtener una referencia al botón
   var toggleButton = document.getElementById('toggleButton');
+  var subcontent = document.getElementById('subcontent');
+  var subcontent2 = document.getElementById('subcontent2');
 
   // Agregar un evento de escucha al botón
   toggleButton.addEventListener("click", function(){
@@ -150,10 +152,13 @@ function initMap() {
     if (button.innerText ==='Start Location Search') {
         button.innerText = 'Stop Location Search';
         contenedor2.style.display = "flex";
+        subcontent.style.display = "flex";
         map.on("click", mapClickHandler);
     } else {
         button.innerText = 'Start Location Search';
         contenedor2.style.display = "none";
+        subcontent.style.display = "none";
+        subcontent2.style.display = "none";
         contenedor.style.display = "none";
         map.off("click", mapClickHandler);
     }
@@ -164,6 +169,7 @@ function initMap() {
     selectedMarker.setOpacity(0)
     slider.value = 0;
     if (contenedor.style.display = "none"){
+      subcontent2.style.display = "flex";
       contenedor.style.display = "flex";
     }
       // Restablecer el valor del slider

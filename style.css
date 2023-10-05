@@ -70,6 +70,12 @@
     align-items: center;
 }
 
+#subcontent,#subcontent{
+    display: none;
+}
+#popup{
+    display: flex;
+}
 #container, #container2{
     display: none;
     flex-direction: column;
