@@ -168,7 +168,7 @@ function initMap() {
     const endDateTime = document.getElementById("end-datetime").value;
     selectedMarker.setOpacity(0)
     slider.value = 0;
-    if (contenedor.style.display = "none"){
+    if (subcontent2.style.display = "none"){
       subcontent2.style.display = "flex";
       contenedor.style.display = "flex";
     }
