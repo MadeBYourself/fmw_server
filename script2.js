@@ -143,23 +143,19 @@ function initMap() {
 
   // Obtener una referencia al botón
   var toggleButton = document.getElementById('toggleButton');
-  var subcontent = document.getElementById('subcontent');
-  var subcontent2 = document.getElementById('subcontent2');
-
+  var subcontent = document.getElementById('subcontent')
+  var subcontent2 = document.getElementById('subcontent2')
   // Agregar un evento de escucha al botón
   toggleButton.addEventListener("click", function(){
     var button = document.getElementById('toggleButton');
     if (button.innerText ==='Start Location Search') {
         button.innerText = 'Stop Location Search';
-        contenedor2.style.display = "flex";
-        subcontent.style.display = "flex";
+        subcontent2.style.display = "flex";
         map.on("click", mapClickHandler);
     } else {
         button.innerText = 'Start Location Search';
-        contenedor2.style.display = "none";
-        subcontent.style.display = "none";
         subcontent2.style.display = "none";
-        contenedor.style.display = "none";
+        subcontent.style.display = "none";
         map.off("click", mapClickHandler);
     }
   });
@@ -168,9 +164,8 @@ function initMap() {
     const endDateTime = document.getElementById("end-datetime").value;
     selectedMarker.setOpacity(0)
     slider.value = 0;
-    if (subcontent2.style.display = "none"){
-      subcontent2.style.display = "flex";
-      contenedor.style.display = "flex";
+    if (subcontent.style.display = "none"){
+      subcontent.style.display = "flex";
     }
       // Restablecer el valor del slider
     timestampDisplay.innerText = '';

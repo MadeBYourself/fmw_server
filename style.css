@@ -77,7 +77,7 @@
     display: flex;
 }
 #container, #container2{
-    display: none;
+    display: flex;
     flex-direction: column;
     align-items: center;
     transition: display 0.2s;
