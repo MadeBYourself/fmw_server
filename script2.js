@@ -107,7 +107,7 @@ function initMap() {
   }
   // Obtener el contenedor
   var contenedor = document.getElementById('container');
-  var contenedor2 = document.getElementById('container');
+  var contenedor2 = document.getElementById('container2');
 
   // Crear el slider
   var slider = document.createElement('input');
