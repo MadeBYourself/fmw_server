@@ -70,12 +70,13 @@
     align-items: center;
 }
 
-#container{
+#container, #container2{
     display: none;
     flex-direction: column;
     align-items: center;
     transition: display 0.2s;
 }
+
 .slider{
     margin: 0 0px 5px 0px;
     width: 200px;

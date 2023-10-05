@@ -68,9 +68,9 @@ function initMap() {
     const url = `extract2.php?start-datetime=${startDateTime}&end-datetime=${endDateTime}`;
     selectedMarker.setOpacity(0)
     slider.value = 0;
-    slider2.value = 0;  // Restablecer el valor del slider
+    slider2.value = 50;  // Restablecer el valor del slider
     timestampDisplay.innerText = '';
-    radiusDisplay.innerText = "";  // Borrar el texto de timestamp
+    radiusDisplay.innerText = "The next search radius is: " +slider2.value +" m";
     // Remover los círculos existentes
     bigCircle && map.removeLayer(bigCircle);
     smallCircles.forEach(function(circle) {
@@ -149,10 +149,11 @@ function initMap() {
     var button = document.getElementById('toggleButton');
     if (button.innerText ==='Start Location Search') {
         button.innerText = 'Stop Location Search';
-        contenedor.style.display = "flex";
+        contenedor2.style.display = "flex";
         map.on("click", mapClickHandler);
     } else {
         button.innerText = 'Start Location Search';
+        contenedor2.style.display = "none";
         contenedor.style.display = "none";
         map.off("click", mapClickHandler);
     }
@@ -162,6 +163,9 @@ function initMap() {
     const endDateTime = document.getElementById("end-datetime").value;
     selectedMarker.setOpacity(0)
     slider.value = 0;
+    if (contenedor.style.display = "none"){
+      contenedor.style.display = "flex";
+    }
       // Restablecer el valor del slider
     timestampDisplay.innerText = '';
       slider2.addEventListener('input', function() {
