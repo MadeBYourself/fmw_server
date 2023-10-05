@@ -107,6 +107,7 @@ function initMap() {
   }
   // Obtener el contenedor
   var contenedor = document.getElementById('container');
+  var contenedor2 = document.getElementById('container2');
 
   // Crear el slider
   var slider = document.createElement('input');
@@ -116,9 +117,9 @@ function initMap() {
 
   var slider2 = document.createElement("input");
   slider2.type = 'range';
-  slider2.min = 50;
+  slider2.min = 0;
   slider2.max = 500;
-  slider2.value = 0;
+  slider2.value = 50;
 
 
   // Agregar una clase para estilizar el slider con CSS
@@ -127,7 +128,7 @@ function initMap() {
 
   // Agregar el slider al contenedor
   contenedor.appendChild(slider);
-  contenedor.appendChild(slider2);
+  contenedor2.appendChild(slider2);
 
   // Crear un elemento para mostrar el timestamp
   var timestampDisplay = document.createElement('div');
@@ -138,7 +139,7 @@ function initMap() {
   radiusDisplay.classList.add("time_display");
   // Agregar el elemento al contenedor
   contenedor.appendChild(timestampDisplay);
-  contenedor.appendChild(radiusDisplay);
+  contenedor2.appendChild(radiusDisplay);
 
   // Obtener una referencia al botón
   var toggleButton = document.getElementById('toggleButton');
@@ -160,11 +161,11 @@ function initMap() {
     const startDateTime = document.getElementById("start-datetime").value;
     const endDateTime = document.getElementById("end-datetime").value;
     selectedMarker.setOpacity(0)
-    slider.value = 50;
+    slider.value = 0;
       // Restablecer el valor del slider
     timestampDisplay.innerText = '';
       slider2.addEventListener('input', function() {
-        radiusDisplay.innerText = "The radius in meters of your next area to pick is: " +slider2.value;
+        radiusDisplay.innerText = "The next search radius is: " +slider2.value +" m";
            });
     // Remover los círculos existentes
     bigCircle && map.removeLayer(bigCircle);
