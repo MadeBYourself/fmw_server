@@ -4,7 +4,6 @@
     
 }
 
-
 /*? ---------- CONTENT ---------- */
 
 #content{
@@ -75,6 +74,7 @@
 }
 #popup{
     display: flex;
+    margin: 0 5px 0 0;
 }
 #container, #container2{
     display: flex;
@@ -90,6 +90,23 @@
     margin: 0 0px 10px 0px;
     font-weight: bold;
 }
+
+.textoEmergente{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+  
+#popup:hover .textoEmergente {
+    display: block;
+  }
 
 #b_toggle{
     display: none;
