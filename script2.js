@@ -127,8 +127,8 @@ function initMap() {
   slider2.classList.add("slider");
 
   // Agregar el slider al contenedor
-  contenedor.appendChild(slider);
   contenedor2.appendChild(slider2);
+  contenedor.appendChild(slider);
 
   // Crear un elemento para mostrar el timestamp
   var timestampDisplay = document.createElement('div');
@@ -138,8 +138,8 @@ function initMap() {
   timestampDisplay.classList.add('time_display');
   radiusDisplay.classList.add("time_display");
   // Agregar el elemento al contenedor
-  contenedor.appendChild(timestampDisplay);
   contenedor2.appendChild(radiusDisplay);
+  contenedor.appendChild(timestampDisplay);
 
   // Obtener una referencia al botón
   var toggleButton = document.getElementById('toggleButton');
