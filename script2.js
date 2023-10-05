@@ -116,7 +116,7 @@ function initMap() {
 
   var slider2 = document.createElement("input");
   slider2.type = 'range';
-  slider2.min = 0;
+  slider2.min = 50;
   slider2.max = 500;
   slider2.value = 0;
 
@@ -160,7 +160,7 @@ function initMap() {
     const startDateTime = document.getElementById("start-datetime").value;
     const endDateTime = document.getElementById("end-datetime").value;
     selectedMarker.setOpacity(0)
-    slider.value = 0;
+    slider.value = 50;
       // Restablecer el valor del slider
     timestampDisplay.innerText = '';
       slider2.addEventListener('input', function() {
