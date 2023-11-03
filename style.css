@@ -39,7 +39,7 @@
 #page_RTL,#page_HIST{
     margin: 0 15px 0 15px;
     background-color: white;
-    color: black;
+    color: #261420;
 }
 
 
@@ -132,7 +132,7 @@
     display: flex;
 }button{
     display: flex;
-    background-color: black;
+    background-color: #592C28;
     color: white;
     border: none;
     font-size: 16px;
@@ -161,7 +161,7 @@
 #title {
     display: flex;
     align-items: center;
-    background-color: black;
+    background-color: #592C28;
     border-radius: 20px;
     justify-content: space-between;
 }#logo{
@@ -189,12 +189,15 @@
 
 /*? ---------- Text ---------- */
 h2{
-    margin: 15px 0 5px 0
+    margin: 15px 0 5px 0;
+    color: #592C28;
 }ul{
     display: block;
     margin: 0px 0px 0px 0px;
     list-style: none;}
-
+h1{
+    color: #592C28;
+}
 /*? ---------- Animation ---------- */
 
 button:hover {
